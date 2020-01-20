@@ -49,6 +49,7 @@
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <FrameLayout
+            android:id="@+id/bottomContainerFrameLayout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:theme="@style/AppTheme.AppBarOverlay"/>

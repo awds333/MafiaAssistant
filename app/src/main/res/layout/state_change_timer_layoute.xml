@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="timerViewModel"
+            type="com.fedchenko.mafiaassistant.ui.viewmodel.TimerViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/timerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{timerViewModel.timerSeconds.toString()}"
+            android:textSize="44sp"
+            tools:text="1:00" />
+
+        <ImageView
+            android:id="@+id/pauseContinueTimerImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:clickable="true"
+            android:onClick="@{()-> timerViewModel.running ? timerViewModel.pause() : timerViewModel.start()}"
+            android:src="@{timerViewModel.running ? @android:drawable/ic_media_pause : @android:drawable/ic_media_play}"
+            tools:srcCompat="@android:drawable/ic_media_play" />
+
+        <ImageView
+            android:id="@+id/startTimerImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:clickable="true"
+            android:onClick="@{()-> timerViewModel.reset()}"
+            app:srcCompat="@android:drawable/ic_menu_rotate" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/endActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Button" />
+    </LinearLayout>
+</layout>

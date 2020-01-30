@@ -7,6 +7,8 @@
         <variable
             name="timerViewModel"
             type="com.fedchenko.mafiaassistant.ui.viewmodel.TimerViewModel" />
+
+        <import type="android.view.View"/>
     </data>
 
     <LinearLayout
@@ -39,6 +41,7 @@
             android:padding="10dp"
             android:clickable="true"
             android:onClick="@{()-> timerViewModel.reset()}"
+            android:visibility="@{timerViewModel.isRunning() ? View.GONE : View.VISIBLE}"
             app:srcCompat="@android:drawable/ic_menu_rotate" />
 
         <Space

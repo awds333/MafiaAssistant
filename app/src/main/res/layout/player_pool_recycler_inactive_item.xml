@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="player"
+            type="com.fedchenko.mafiaassistant.model.Player" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -18,6 +22,8 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:textSize="24sp"
+            android:text="@{player.name}"
+            tools:text="Сосиска" />
     </androidx.cardview.widget.CardView>
 </layout>

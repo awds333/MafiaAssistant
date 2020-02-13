@@ -1,6 +1,7 @@
 package com.fedchenko.mafiaassistant.ui.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -13,6 +14,8 @@ import com.fedchenko.mafiaassistant.model.Player
 
 class PlayerPoolRecyclerAdapter : RecyclerView.Adapter<PlayerPoolBaseViewHolder>() {
     private var playersList: List<Player> = emptyList()
+
+    var onItemClickListener: ((View, Player) -> Unit)? = null
 
     val playersObserver: Observer<List<Player>> = Observer {
         val oldPlayers = playersList
@@ -75,12 +78,19 @@ class PlayerPoolRecyclerAdapter : RecyclerView.Adapter<PlayerPoolBaseViewHolder>
         if (playersList[position].active) ACTIVE_VIEW_TYPE else INACTIVE_VIEW_TYPE
 
     override fun onBindViewHolder(holder: PlayerPoolBaseViewHolder, position: Int) {
+        val player = playersList[position]
         when (holder) {
             is PlayerPoolBaseViewHolder.PlayerPoolActiveViewHolder -> {
-                holder.binding.player = playersList[position]
+                holder.binding.player = player
+                holder.binding.onClickListener = View.OnClickListener {
+                    onItemClickListener?.invoke(it,player)
+                }
             }
             is PlayerPoolBaseViewHolder.PlayerPoolInactiveViewHolder -> {
-                holder.binding.player = playersList[position]
+                holder.binding.player = player
+                holder.binding.onClickListener = View.OnClickListener {
+                    onItemClickListener?.invoke(it,player)
+                }
             }
         }
     }
